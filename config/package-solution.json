@@ -1,0 +1,21 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+	"solution": {
+		"name": "itbi-risk-matrix-client-side-solution",
+		"id": "a0226597-1aa0-4ad9-a670-911c8c716c99",
+		"version": "1.0.0.0",
+		"includeClientSideAssets": true,
+		"skipFeatureDeployment": true,
+		"isDomainIsolated": false,
+		"developer": {
+			"name": "",
+			"websiteUrl": "",
+			"privacyUrl": "",
+			"termsOfUseUrl": "",
+			"mpnId": "Undefined-1.13.1"
+		}
+	},
+	"paths": {
+		"zippedPackage": "solution/itbiRiskMatrix.sppkg"
+	}
+}
