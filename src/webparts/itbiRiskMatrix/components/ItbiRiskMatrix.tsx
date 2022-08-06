@@ -138,7 +138,7 @@ export default class ItbiRiskMatrix extends React.Component<IItbiRiskMatrixProps
 		try {
 			const sp = spfi(this._sp);
 			let _listName = this.props.listName ? this.props.listName : 'Риски';
-			console.log(_listName);
+			// console.log(_listName);
 			// New subsite Web
 			// const web = Web([sp.web, 'https://altynalmaskz.sharepoint.com/org/risk']);
 			// const items: any = await web.lists.getByTitle('Риски').items.select('Title', 'Num', 'Code')();
@@ -146,12 +146,21 @@ export default class ItbiRiskMatrix extends React.Component<IItbiRiskMatrixProps
 			// const list = sp.web.lists.getByTitle(_listName).getParentInfos();
 			// console.log(list);
 
-			const items: any = await sp.web.lists.getByTitle(_listName).items.select('Id', 'Title', 'Num', 'Code')();
+			const items: any = await sp.web.lists
+				.getByTitle(_listName)
+				.items.select('Id', 'Title', 'Num', 'Code', 'FileDirRef')();
 			// const itemsL: any = await sp.web.lists.getByTitle('Риски').items();
 			// console.log(itemsL);
 
 			const _risks = items.map((item) => {
-				return { riskID: item.ID, riskTitle: item.Title, riskCode: item.Num, riskLevel: item.Code };
+				// console.log(item.FileDirRef);
+				return {
+					riskID: item.ID,
+					riskTitle: item.Title,
+					riskCode: item.Num,
+					riskLevel: item.Code,
+					listInternalName: item.FileDirRef,
+				};
 			});
 
 			this.setState({ risks: _risks });
@@ -194,8 +203,10 @@ export default class ItbiRiskMatrix extends React.Component<IItbiRiskMatrixProps
 			currentRisks = this.state.risks.filter((risk) => risk?.riskLevel === _riskLevel);
 			// console.log(currentRisks ? currentRisks : 'not found');
 
+			// console.log(this.state.risks);
+
 			for (let j = 0; j < currentRisks.length; j++) {
-				riskLink = `https://altynalmaskz.sharepoint.com/org/risk/Lists/${this.props.listName}/DispForm.aspx?ID=${currentRisks[j]?.riskID}`;
+				riskLink = `https://altynalmaskz.sharepoint.com${currentRisks[j]?.listInternalName}/DispForm.aspx?ID=${currentRisks[j]?.riskID}`;
 				risksList += `
 											<a href=${riskLink} target='_blank' class=${styles.itemLink}>				
 												<div class=${styles.circle}>
