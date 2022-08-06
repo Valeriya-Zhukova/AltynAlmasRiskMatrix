@@ -1,10 +1,12 @@
 declare interface IItbiRiskMatrixWebPartStrings {
-  PropertyPaneDescription: string;
-  BasicGroupName: string;
-  DescriptionFieldLabel: string;
+	[x: string]: string;
+	PropertyPaneDescription: string;
+	BasicGroupName: string;
+	DescriptionFieldLabel: string;
+	ListNameFieldLabel: string;
 }
 
 declare module 'ItbiRiskMatrixWebPartStrings' {
-  const strings: IItbiRiskMatrixWebPartStrings;
-  export = strings;
+	const strings: IItbiRiskMatrixWebPartStrings;
+	export = strings;
 }

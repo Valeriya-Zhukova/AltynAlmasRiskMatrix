@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
-import { IPropertyPaneConfiguration, PropertyPaneTextField } from '@microsoft/sp-property-pane';
+import { IPropertyPaneConfiguration, PropertyPaneTextField, PropertyPaneDropdown } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'ItbiRiskMatrixWebPartStrings';
@@ -9,9 +9,11 @@ import ItbiRiskMatrix from './components/ItbiRiskMatrix';
 import { IItbiRiskMatrixProps } from './components/IItbiRiskMatrixProps';
 
 import { getSP } from './pnpjsConfig';
+import * as ReactDOM from 'react-dom';
 
 export interface IItbiRiskMatrixWebPartProps {
 	description: string;
+	listName: string;
 }
 
 export default class ItbiRiskMatrixWebPart extends BaseClientSideWebPart<IItbiRiskMatrixWebPartProps> {
@@ -25,6 +27,8 @@ export default class ItbiRiskMatrixWebPart extends BaseClientSideWebPart<IItbiRi
 	public render(): void {
 		const element: React.ReactElement<IItbiRiskMatrixProps> = React.createElement(ItbiRiskMatrix, {
 			description: this.properties.description,
+			listName: this.properties.listName,
+			context: this.context,
 		});
 
 		ReactDom.render(element, this.domElement);
@@ -51,6 +55,9 @@ export default class ItbiRiskMatrixWebPart extends BaseClientSideWebPart<IItbiRi
 							groupFields: [
 								PropertyPaneTextField('description', {
 									label: strings.DescriptionFieldLabel,
+								}),
+								PropertyPaneTextField('listName', {
+									label: strings.ListNameFieldLabel,
 								}),
 							],
 						},

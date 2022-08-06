@@ -1,7 +1,7 @@
 {
 	"$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
 	"solution": {
-		"name": "itbi-risk-matrix-client-side-solution",
+		"name": "itbiRiskMatrix",
 		"id": "a0226597-1aa0-4ad9-a670-911c8c716c99",
 		"version": "1.0.0.0",
 		"includeClientSideAssets": true,
