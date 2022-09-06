@@ -108,7 +108,7 @@
 
 	.tooltiptext {
 		width: 200px;
-		height: 40px;
+		height: fit-content;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -118,7 +118,7 @@
 		text-align: center;
 		font-size: 0.8rem;
 		border-radius: 6px;
-		padding: 3px 0;
+		padding: 4px;
 		position: relative;
 		z-index: 1;
 		top: -70px;
@@ -126,7 +126,7 @@
 		visibility: hidden;
 		opacity: 0;
 		transition: visibility 0s linear 300ms, opacity 300ms;
-		margin: 5px;
+		margin: 4px;
 		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 	}
 
